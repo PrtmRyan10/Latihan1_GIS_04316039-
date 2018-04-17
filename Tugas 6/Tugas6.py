@@ -21,14 +21,11 @@ basinsLabels.halo_fill = mapnik.Color('yellow')
 basinsLabels.halo_radius = 1
 r.symbols.append(basinsLabels) 
 
-# line_symbolizer = mapnik.LineSymbolizer(mapnik.Color('red'),1)
-# r.symbols.append(line_symbolizer)
-# s.rules.append(r)
-
-# point_sym = mapnik.PointSymbolizer()
-# point_sym.allow_overlap = True
-# point_sym = mapnik.MarkersSymbolizer()
-# r.symbols.append(point_sym)
+point_sym = mapnik.PointSymbolizer()
+point_sym.allow_overlap = True
+point_sym.opacity = 0.5
+point_sym.file = ()
+r.symbols.append(point_sym)
 
 s.rules.append(r)
 m.append_style('Ryan2',s)
@@ -40,5 +37,5 @@ m.layers.append(layer)
 
 
 m.zoom_all()
-mapnik.render_to_file(m,'indonesia.pdf','pdf')
-print "rendered image to 'indonesia.pdf"
+mapnik.render_to_file(m,'indonesia.jpeg','jpeg')
+print "rendered image to 'indonesia.jpeg"
