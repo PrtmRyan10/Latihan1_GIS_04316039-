@@ -28,8 +28,21 @@ point_sym.opacity = 0.5
 point_sym.file = ()
 r.symbols.append(point_sym)
 
+POSTGIS_TABLE = dict(
+	host='localhost',
+	port=5432,
+	user='postgres',
+	password="prtmryan10",
+	dbname='Ryan',
+
+	table='(select ST_Buffer(ST_Centroid(geom),1) as geom, point from kelasgis) as point',
+)
+LAYER_NAME = 'point'
+
 s.rules.append(r)
 m.append_style('Ryan2',s)
+ds = mapnik.PostGIS(**POSTGIS_TABLE)
+layer = mapnik.Layer(LAYER_NAME)
 ds = mapnik.Shapefile(file="point.shp")
 layer = mapnik.Layer('indonesia')
 layer.datasource = ds
